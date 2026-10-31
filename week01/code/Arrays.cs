@@ -8,12 +8,17 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        // 1. Create a doble array of size 'length'.
+        // 2. Loop form 1 = 0 up to length - 1.
+        // 3. Multiply 'number' by (i + 1) to get each sequential multiple.
+        // 4. Store the calculated multiple at index i in the array.
+        // 5. return the completed array.
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+        return result;
     }
 
     /// <summary>
@@ -25,9 +30,24 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // 1. Check if the list is null, empty, or if amount is less tham or equal to 0, and exit if so.
+        // 2. Use the modulo operator (amount % data.Count) to handle rotation amounts larger than the list size.
+        // 3. Extract the tail portion of the list that needs to move to the front using GetRange.
+        // 4. Extract the remaing head portion of the list using GetRange.
+        // 5. Clear The original list and re-add the tail elements followed by the head elements.
+        
+        if (data == null || data.Count == 0 || amount <= 0)
+            return;
+
+        amount = amount % data.Count;
+        if (amount == 0)
+            return;
+
+        List<int> tail = data.GetRange(data.Count - amount, amount);
+        List<int> head = data.GetRange(0, data.Count - amount);
+
+        data.Clear();
+        data.AddRange(tail);
+        data.AddRange(head);
     }
 }
